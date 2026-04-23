@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".activities.CompletarServicioActivity">
+
+    <!-- AppBar con Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        app:elevation="4dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/white"
+            app:title="@string/completar_servicio"
+            app:titleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- ProgressBar (visibility gone by default) -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_gravity="center" />
+
+    <!-- Contenido principal con Scroll -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_medium">
+
+            <!-- STEP 1: CONFIRMATION LAYOUT -->
+            <LinearLayout
+                android:id="@+id/layoutConfirmacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Material Card with confirmation content -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    app:cardCornerRadius="@dimen/corner_radius_medium"
+                    app:cardElevation="@dimen/card_elevation">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_large">
+
+                        <!-- Large Checkmark Icon -->
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_large"
+                            android:layout_height="@dimen/icon_size_large"
+                            android:src="@drawable/ic_check_circle"
+                            android:contentDescription="@string/confirmacion"
+                            app:tint="@color/success"
+                            android:layout_marginBottom="@dimen/margin_medium" />
+
+                        <!-- Confirmation Title -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/confirmar_completacion"
+                            android:textSize="@dimen/text_size_headline"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary_text"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/margin_medium" />
+
+                        <!-- Service Summary -->
+                        <TextView
+                            android:id="@+id/tvResumen"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/resumen_servicio"
+                            android:textSize="@dimen/text_size_body"
+                            android:textColor="@color/secondary_text"
+                            android:gravity="center"
+                            android:lineSpacingExtra="4dp"
+                            android:layout_marginBottom="@dimen/margin_large" />
+
+                        <!-- Button Container -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:spacing="@dimen/spacing_small">
+
+                            <!-- Confirm Button (Primary) -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnConfirmarCompletar"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/button_height"
+                                android:text="@string/confirmar_completacion"
+                                android:textSize="@dimen/text_size_body_large"
+                                app:cornerRadius="@dimen/corner_radius_medium"
+                                android:layout_marginBottom="@dimen/margin_small" />
+
+                            <!-- Cancel Button (Outlined) -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnCancelar"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/button_height"
+                                android:text="@string/cancelar"
+                                android:textSize="@dimen/text_size_body_large"
+                                app:cornerRadius="@dimen/corner_radius_medium"
+                                style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- STEP 2: CODE GENERATED LAYOUT (visibility gone by default) -->
+            <LinearLayout
+                android:id="@+id/layoutCodigoGenerado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Success Material Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    app:cardCornerRadius="@dimen/corner_radius_medium"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardBackgroundColor="#E8F5E9">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_large">
+
+                        <!-- Large Success Icon (Check Circle) -->
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/ic_check_circle"
+                            android:contentDescription="@string/exito"
+                            app:tint="@color/success"
+                            android:layout_marginBottom="@dimen/margin_medium" />
+
+                        <!-- Success Title -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/servicio_completado"
+                            android:textSize="@dimen/text_size_headline"
+                            android:textStyle="bold"
+                            android:textColor="@color/success"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/margin_medium" />
+
+                        <!-- Divider -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/divider_color"
+                            android:layout_marginBottom="@dimen/margin_medium" />
+
+                        <!-- Code Label -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/codigo_validacion"
+                            android:textSize="@dimen/text_size_body"
+                            android:textColor="@color/secondary_text"
+                            android:layout_marginBottom="@dimen/margin_small" />
+
+                        <!-- Large Code Display (Monospace) -->
+                        <TextView
+                            android:id="@+id/tvCodigoGrande"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="847392"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/success"
+                            android:fontFamily="monospace"
+                            android:gravity="center"
+                            android:letterSpacing="0.2"
+                            android:layout_marginBottom="@dimen/margin_large" />
+
+                        <!-- Divider -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/divider_color"
+                            android:layout_marginBottom="@dimen/margin_medium" />
+
+                        <!-- Expiration Date -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/codigo_expira_en"
+                            android:textSize="@dimen/text_size_caption"
+                            android:textColor="@color/secondary_text"
+                            android:layout_marginBottom="@dimen/margin_small" />
+
+                        <TextView
+                            android:id="@+id/tvFechaExpiracion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="15 de Noviembre, 2025 - 10:30 AM"
+                            android:textSize="@dimen/text_size_body"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary_text"
+                            android:layout_marginBottom="@dimen/margin_medium" />
+
+                        <!-- Client Email -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/codigo_enviado_a"
+                            android:textSize="@dimen/text_size_caption"
+                            android:textColor="@color/secondary_text"
+                            android:layout_marginBottom="@dimen/margin_small" />
+
+                        <TextView
+                            android:id="@+id/tvEmailCliente"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="cliente@empresa.com"
+                            android:textSize="@dimen/text_size_body"
+                            android:textColor="@color/primary"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/margin_large" />
+
+                        <!-- Action Buttons Container -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:spacing="@dimen/spacing_small">
+
+                            <!-- Copy Code Button -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnCopiarCodigo"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/button_height"
+                                android:layout_weight="1"
+                                android:text="@string/copiar_codigo"
+                                android:textSize="@dimen/text_size_body"
+                                app:icon="@android:drawable/ic_menu_edit"
+                                app:iconGravity="textStart"
+                                app:cornerRadius="@dimen/corner_radius_medium"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_marginEnd="@dimen/margin_small" />
+
+                            <!-- Resend Email Button -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnReenviarEmail"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/button_height"
+                                android:layout_weight="1"
+                                android:text="@string/reenviar_email"
+                                android:textSize="@dimen/text_size_body"
+                                app:icon="@android:drawable/ic_dialog_email"
+                                app:iconGravity="textStart"
+                                app:cornerRadius="@dimen/corner_radius_medium"
+                                style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                        </LinearLayout>
+
+                        <!-- Return Button (Primary, Full Width) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnVolver"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/button_height"
+                            android:text="@string/volver_inicio"
+                            android:textSize="@dimen/text_size_body_large"
+                            app:cornerRadius="@dimen/corner_radius_medium"
+                            android:layout_marginTop="@dimen/margin_small" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

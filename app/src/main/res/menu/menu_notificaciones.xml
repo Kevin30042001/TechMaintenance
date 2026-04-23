@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_marcar_todas_leidas"
+        android:title="Marcar todas como leídas"
+        android:icon="@drawable/ic_check_circle"
+        app:iconTint="@color/white"
+        app:showAsAction="never"/>
+
+</menu>

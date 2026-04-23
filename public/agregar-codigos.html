@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Códigos de Validación - TechMaintenance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2196F3;
+        }
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #1976D2;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            border-radius: 4px;
+            display: none;
+        }
+        .mantenimiento-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        .mantenimiento-item .link {
+            word-break: break-all;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .copy-btn {
+            padding: 8px 15px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .error {
+            background: #ffebee;
+            border-left-color: #f44336;
+            color: #c62828;
+        }
+        .success {
+            background: #e8f5e9;
+            border-left-color: #4CAF50;
+            color: #2e7d32;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2196F3;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Agregar Códigos de Validación</h1>
+        <p>Esta herramienta busca mantenimientos completados sin código de validación y les genera uno automáticamente.</p>
+
+        <button id="btnBuscar" onclick="buscarMantenimientos()">
+            🔍 Buscar Mantenimientos sin Código
+        </button>
+
+        <button id="btnAgregarCodigos" onclick="agregarCodigos()" style="display: none;">
+            ✅ Agregar Códigos a Todos
+        </button>
+
+        <div id="resultado"></div>
+        <div id="listaMantenimientos"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyANRVag8hCMDZRUaFQAptOasM0LdAB4dwQ",
+            authDomain: "techmaintenance-798e9.firebaseapp.com",
+            projectId: "techmaintenance-798e9",
+            storageBucket: "techmaintenance-798e9.firebasestorage.app",
+            messagingSenderId: "704465532611",
+            appId: "1:704465532611:android:3c7c22a87a214877f89476"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        let mantenimientosSinCodigo = [];
+
+        // Generar código aleatorio de 6 dígitos
+        function generarCodigo() {
+            return Math.floor(100000 + Math.random() * 900000).toString();
+        }
+
+        // Buscar mantenimientos completados sin código
+        async function buscarMantenimientos() {
+            const btnBuscar = document.getElementById('btnBuscar');
+            const resultado = document.getElementById('resultado');
+            const listaMantenimientos = document.getElementById('listaMantenimientos');
+
+            btnBuscar.disabled = true;
+            resultado.innerHTML = '<div class="loading"><div class="spinner"></div><p>Buscando mantenimientos...</p></div>';
+            resultado.style.display = 'block';
+            listaMantenimientos.innerHTML = '';
+
+            try {
+                console.log('🔍 Buscando mantenimientos completados...');
+
+                const snapshot = await db.collection('mantenimientos')
+                    .where('estado', '==', 'completado')
+                    .get();
+
+                console.log(`📋 Total mantenimientos completados: ${snapshot.size}`);
+
+                mantenimientosSinCodigo = [];
+
+                for (const doc of snapshot.docs) {
+                    const data = doc.data();
+
+                    // Verificar si NO tiene código O si ya fue validado
+                    if (!data.codigoValidacion || data.codigoValidacion === '') {
+                        mantenimientosSinCodigo.push({
+                            id: doc.id,
+                            data: data
+                        });
+                    }
+                }
+
+                console.log(`✅ Encontrados ${mantenimientosSinCodigo.length} sin código`);
+
+                if (mantenimientosSinCodigo.length === 0) {
+                    resultado.innerHTML = '<p class="success">✅ Todos los mantenimientos completados ya tienen código de validación.</p>';
+                    btnBuscar.disabled = false;
+                    return;
+                }
+
+                // Mostrar lista
+                resultado.innerHTML = `<p class="success">✅ Encontrados ${mantenimientosSinCodigo.length} mantenimientos sin código.</p>`;
+
+                let html = '<h3>Mantenimientos encontrados:</h3>';
+                mantenimientosSinCodigo.forEach((mant, index) => {
+                    html += `
+                        <div class="mantenimiento-item">
+                            <strong>Mantenimiento ${index + 1}</strong><br>
+                            <strong>ID:</strong> ${mant.id}<br>
+                            <strong>Estado:</strong> ${mant.data.estado}<br>
+                            <strong>Tipo:</strong> ${mant.data.tipo || 'No especificado'}<br>
+                            <strong>Técnico:</strong> ${mant.data.tecnicoPrincipalId || 'No especificado'}
+                        </div>
+                    `;
+                });
+
+                listaMantenimientos.innerHTML = html;
+                document.getElementById('btnAgregarCodigos').style.display = 'inline-block';
+                btnBuscar.disabled = false;
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+                resultado.innerHTML = `<p class="error">❌ Error al buscar: ${error.message}</p>`;
+                btnBuscar.disabled = false;
+            }
+        }
+
+        // Agregar códigos a todos los mantenimientos
+        async function agregarCodigos() {
+            const btnAgregar = document.getElementById('btnAgregarCodigos');
+            const resultado = document.getElementById('resultado');
+            const listaMantenimientos = document.getElementById('listaMantenimientos');
+
+            if (!confirm(`¿Agregar códigos a ${mantenimientosSinCodigo.length} mantenimientos?`)) {
+                return;
+            }
+
+            btnAgregar.disabled = true;
+            resultado.innerHTML = '<div class="loading"><div class="spinner"></div><p>Agregando códigos...</p></div>';
+            listaMantenimientos.innerHTML = '';
+
+            try {
+                let html = '<h3>Resultados:</h3>';
+                let exitosos = 0;
+
+                for (const mant of mantenimientosSinCodigo) {
+                    const codigo = generarCodigo();
+                    const ahora = firebase.firestore.Timestamp.now();
+                    const expiracion = new firebase.firestore.Timestamp(ahora.seconds + 86400, ahora.nanoseconds); // +24h
+
+                    const link = `https://techmaintenance-798e9.web.app/validar?codigo=${codigo}&id=${mant.id}`;
+
+                    try {
+                        await db.collection('mantenimientos').doc(mant.id).update({
+                            codigoValidacion: codigo,
+                            codigoGeneradoEn: ahora,
+                            codigoExpiraEn: expiracion,
+                            linkValidacion: link,
+                            validadoPorCliente: false
+                        });
+
+                        html += `
+                            <div class="mantenimiento-item">
+                                <strong>✅ Mantenimiento ${mant.id}</strong><br>
+                                <strong>Código:</strong> ${codigo}<br>
+                                <strong>Link:</strong>
+                                <div class="link" id="link-${mant.id}">${link}</div>
+                                <button class="copy-btn" onclick="copiarLink('${link}', 'link-${mant.id}')">📋 Copiar Link</button>
+                            </div>
+                        `;
+
+                        exitosos++;
+                    } catch (error) {
+                        html += `
+                            <div class="mantenimiento-item error">
+                                <strong>❌ Error en ${mant.id}</strong><br>
+                                ${error.message}
+                            </div>
+                        `;
+                    }
+                }
+
+                resultado.innerHTML = `<p class="success">✅ Códigos agregados exitosamente a ${exitosos} de ${mantenimientosSinCodigo.length} mantenimientos.</p>`;
+                listaMantenimientos.innerHTML = html;
+                btnAgregar.style.display = 'none';
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+                resultado.innerHTML = `<p class="error">❌ Error: ${error.message}</p>`;
+                btnAgregar.disabled = false;
+            }
+        }
+
+        // Copiar link al portapapeles
+        function copiarLink(link, elementId) {
+            navigator.clipboard.writeText(link).then(() => {
+                const elemento = document.getElementById(elementId);
+                const textoOriginal = elemento.style.background;
+                elemento.style.background = '#c8e6c9';
+                setTimeout(() => {
+                    elemento.style.background = textoOriginal;
+                }, 1000);
+                alert('✅ Link copiado al portapapeles');
+            }).catch(err => {
+                alert('❌ Error al copiar: ' + err);
+            });
+        }
+    </script>
+</body>
+</html>

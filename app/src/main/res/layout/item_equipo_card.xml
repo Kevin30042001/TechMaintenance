@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="0dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Imagen del equipo -->
+        <ImageView
+            android:id="@+id/ivFotoEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_computer"
+            android:contentDescription="Foto del equipo"
+            tools:ignore="HardcodedText"/>
+
+        <!-- Contenido del card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Nombre del equipo (marca + modelo) -->
+            <TextView
+                android:id="@+id/tvNombreEquipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dell Latitude 5420"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginBottom="4dp"
+                tools:ignore="HardcodedText"/>
+
+            <!-- Número de serie -->
+            <TextView
+                android:id="@+id/tvNumeroSerie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="S/N: DL-2025-001"
+                android:textSize="11sp"
+                android:textColor="@color/secondary_text"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginBottom="8dp"
+                tools:ignore="HardcodedText"/>
+
+            <!-- Cliente propietario -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏢"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:id="@+id/tvCliente"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Corp XYZ"
+                    android:textSize="12sp"
+                    android:textColor="@color/secondary_text"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Ubicación específica -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📍"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:id="@+id/tvUbicacion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Oficina 205, 2do piso"
+                    android:textSize="11sp"
+                    android:textColor="@color/secondary_text"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Separador -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_color"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Estado del equipo -->
+            <TextView
+                android:id="@+id/tvEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🟢 Operativo"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/success"
+                android:layout_marginBottom="4dp"
+                tools:ignore="HardcodedText"/>
+
+            <!-- Total de mantenimientos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔧"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:id="@+id/tvTotalMantenimientos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8 mantenimientos"
+                    android:textSize="11sp"
+                    android:textColor="@color/secondary_text"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Botones de acción -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVerEquipo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="@string/ver"
+                    android:textSize="11sp"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginEnd="4dp"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:cornerRadius="4dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEditarEquipo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="@string/editar"
+                    android:textSize="11sp"
+                    android:paddingHorizontal="12dp"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:cornerRadius="4dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

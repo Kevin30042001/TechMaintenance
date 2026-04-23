@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Excluir credenciales de login del backup en la nube por seguridad -->
+        <exclude domain="sharedpref" path="LoginPrefs.xml"/>
+
+        <!-- Incluir todo lo demás -->
+        <include domain="sharedpref" path="."/>
+        <include domain="database" path="."/>
+        <include domain="file" path="."/>
+    </cloud-backup>
+</data-extraction-rules>

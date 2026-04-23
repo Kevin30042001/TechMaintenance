@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="8dp">
+
+    <!-- Dropdown para seleccionar técnico de apoyo -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilTecnicoApoyo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginEnd="8dp"
+        android:hint="Seleccionar técnico"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+        <AutoCompleteTextView
+            android:id="@+id/actvTecnicoApoyo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Botón para remover este técnico de apoyo -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRemoverTecnicoApoyo"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:icon="@drawable/ic_delete"
+        app:iconPadding="0dp"
+        app:iconGravity="textStart"
+        app:iconTint="@color/error"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+</LinearLayout>

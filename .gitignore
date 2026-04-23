@@ -1,0 +1,41 @@
+# ===========================
+# Android / Gradle
+# ===========================
+*.iml
+.gradle
+/local.properties
+/build
+/captures
+app/build
+.externalNativeBuild
+.cxx
+
+# ===========================
+# Android Studio / IntelliJ
+# ===========================
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+
+# ===========================
+# Firebase
+# ===========================
+.firebase/
+.firebaserc.local
+
+# ===========================
+# Node / Cloud Functions
+# ===========================
+functions/node_modules/
+functions/.cache/
+
+# ===========================
+# Secretos y config local
+# ===========================
+local.properties
+*.keystore
+*.jks

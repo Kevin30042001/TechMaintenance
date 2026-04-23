@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Servicio - TechMaintenance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="theme-color" content="#2196F3">
+    <meta name="description" content="Valida y califica el servicio de mantenimiento recibido">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                    </svg>
+                </div>
+                <h1>TechMaintenance</h1>
+            </div>
+            <p class="subtitle">Sistema de Gestión de Mantenimientos</p>
+        </header>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p>Cargando información del servicio...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-state hidden">
+            <div class="error-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" stroke="#EF5350" stroke-width="2"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12" stroke="#EF5350" stroke-width="2" stroke-linecap="round"></line>
+                    <circle cx="12" cy="16" r="0.5" fill="#EF5350" stroke="none"></circle>
+                </svg>
+            </div>
+            <h2 id="errorTitle">Error</h2>
+            <p id="errorMessage">Ha ocurrido un error</p>
+            <button onclick="solicitarReenvio()" class="btn-secondary">
+                <span style="position: relative; z-index: 1;">SOLICITAR NUEVO CÓDIGO</span>
+            </button>
+        </div>
+
+        <!-- Content State -->
+        <div id="contentState" class="content-state hidden">
+            <!-- Service Summary Card -->
+            <div class="card service-card">
+                <h2>Resumen del Servicio</h2>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Fecha y Hora:</span>
+                        <span id="fechaServicio" class="value">-</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="label">Duración:</span>
+                        <span id="duracionServicio" class="value">-</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="label">Empresa:</span>
+                        <span id="nombreEmpresa" class="value">-</span>
+                    </div>
+
+                    <div class="info-item full-width">
+                        <span class="label">Equipo Atendido:</span>
+                        <span id="equipoInfo" class="value">-</span>
+                    </div>
+                </div>
+
+                <div class="technician-section">
+                    <div class="technician-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="technician-info">
+                        <span class="label">Técnico Responsable:</span>
+                        <span id="nombreTecnico" class="value">-</span>
+                    </div>
+                </div>
+
+                <div class="work-description">
+                    <h3>Trabajo Realizado</h3>
+                    <p id="trabajoRealizado">-</p>
+                </div>
+
+                <!-- Photo Gallery -->
+                <div id="photoGallery" class="photo-gallery hidden">
+                    <h3>Evidencias Fotográficas</h3>
+                    <div id="photosContainer" class="photos-grid">
+                        <!-- Photos will be inserted here dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rating Form -->
+            <div class="card rating-card">
+                <h2>Calificar Servicio</h2>
+
+                <div class="rating-section">
+                    <p class="rating-label">¿Cómo calificarías el servicio recibido?</p>
+                    <div class="stars-container">
+                        <button class="star" data-value="1" onclick="setRating(1)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </button>
+                        <button class="star" data-value="2" onclick="setRating(2)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </button>
+                        <button class="star" data-value="3" onclick="setRating(3)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </button>
+                        <button class="star" data-value="4" onclick="setRating(4)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </button>
+                        <button class="star" data-value="5" onclick="setRating(5)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <p id="ratingText" class="rating-text"></p>
+                </div>
+
+                <div class="comment-section">
+                    <label for="comentario">Comentarios adicionales (opcional)</label>
+                    <textarea
+                        id="comentario"
+                        placeholder="Comparte tu experiencia con el servicio..."
+                        maxlength="300"
+                        rows="4"></textarea>
+                    <p class="char-counter"><span id="charCount">0</span>/300 caracteres</p>
+                </div>
+
+                <div class="confirmation-section">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="confirmacion" required>
+                        <span class="checkmark"></span>
+                        <span>Confirmo que el servicio fue realizado según lo descrito</span>
+                    </label>
+                </div>
+
+                <button id="submitBtn" class="btn-primary" onclick="enviarValidacion()" disabled>
+                    <span style="position: relative; z-index: 1;">ENVIAR VALIDACIÓN</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Success State -->
+        <div id="successState" class="success-state hidden">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h2>¡Gracias por tu validación!</h2>
+            <p>Tu opinión nos ayuda a mejorar nuestro servicio</p>
+            <button onclick="window.close()" class="btn-secondary">
+                <span style="position: relative; z-index: 1;">CERRAR</span>
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>TechSolution © 2025 - Sistema de Gestión de Mantenimientos</p>
+        </footer>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyANRVag8hCMDZRUaFQAptOasM0LdAB4dwQ",
+            authDomain: "techmaintenance-798e9.firebaseapp.com",
+            projectId: "techmaintenance-798e9",
+            storageBucket: "techmaintenance-798e9.firebasestorage.app",
+            messagingSenderId: "704465532611",
+            appId: "1:704465532611:android:3c7c22a87a214877f89476"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+
+    <script src="js/validacion.js"></script>
+</body>
+</html>

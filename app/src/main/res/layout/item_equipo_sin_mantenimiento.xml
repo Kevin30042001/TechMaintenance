@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardEquipo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header: Equipo + Badge de días -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Tipo de equipo -->
+            <TextView
+                android:id="@+id/tvTipoEquipo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Laptop"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                tools:ignore="HardcodedText"/>
+
+            <!-- Badge de días sin mantenimiento -->
+            <TextView
+                android:id="@+id/tvDiasSinMantenimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="120 días"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/badge_background"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                tools:ignore="HardcodedText"/>
+
+        </LinearLayout>
+
+        <!-- Marca y modelo -->
+        <TextView
+            android:id="@+id/tvMarcaModelo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Dell Latitude 5420"
+            android:textSize="14sp"
+            android:textColor="@color/secondary_text"
+            tools:ignore="HardcodedText"/>
+
+        <!-- Número de serie -->
+        <TextView
+            android:id="@+id/tvNumeroSerie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Serie: DL-2025-001"
+            android:textSize="12sp"
+            android:textColor="@color/secondary_text"
+            tools:ignore="HardcodedText"/>
+
+        <!-- Separador -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/divider"/>
+
+        <!-- Información del cliente -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_business"
+                app:tint="@color/secondary_text"
+                tools:ignore="ContentDescription"/>
+
+            <TextView
+                android:id="@+id/tvNombreEmpresa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Corporación XYZ"
+                android:textSize="14sp"
+                android:textColor="@color/primary_text"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:ignore="HardcodedText"/>
+
+        </LinearLayout>
+
+        <!-- Contacto -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_person"
+                app:tint="@color/secondary_text"
+                tools:ignore="ContentDescription"/>
+
+            <TextView
+                android:id="@+id/tvNombreContacto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Juan Pérez"
+                android:textSize="12sp"
+                android:textColor="@color/secondary_text"
+                tools:ignore="HardcodedText"/>
+
+        </LinearLayout>
+
+        <!-- Botones de acción -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnProgramarMantenimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Programar Mantenimiento"
+                android:textSize="12sp"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                app:icon="@drawable/ic_build"
+                app:iconSize="18dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

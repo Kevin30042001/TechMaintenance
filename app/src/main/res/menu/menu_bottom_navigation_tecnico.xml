@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_inicio"
+        android:icon="@drawable/ic_home"
+        android:title="@string/inicio" />
+
+    <item
+        android:id="@+id/nav_mis_equipos"
+        android:icon="@drawable/ic_computer"
+        android:title="@string/mis_equipos" />
+
+    <item
+        android:id="@+id/nav_mis_tareas"
+        android:icon="@drawable/ic_build"
+        android:title="@string/mis_tareas" />
+
+    <item
+        android:id="@+id/nav_calendario"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/calendario" />
+
+    <item
+        android:id="@+id/nav_perfil"
+        android:icon="@drawable/ic_person"
+        android:title="@string/perfil" />
+
+</menu>

@@ -1,0 +1,376 @@
+<resources>
+    <string name="app_name">Tech</string>
+    <!-- General -->
+    <string name="dashboard">Dashboard</string>
+    <string name="menu">Menú</string>
+    <string name="perfil">Perfil</string>
+
+    <!-- Métricas -->
+    <string name="metricas_generales">Métricas Generales</string>
+    <string name="completados">Completados</string>
+    <string name="en_proceso">En Proceso</string>
+    <string name="pendientes">Pendientes</string>
+    <string name="calificacion">Calificación</string>
+    <string name="promedio">Promedio</string>
+    <string name="este_mes">Este mes</string>
+    <string name="hoy">Hoy</string>
+    <string name="esta_semana">Esta semana</string>
+
+    <!-- Estadísticas -->
+    <string name="estadisticas_rapidas">Estadísticas Rápidas</string>
+    <string name="tecnicos_activos">Técnicos Activos</string>
+    <string name="equipos_registrados">Equipos Registrados</string>
+    <string name="clientes_activos">Clientes Activos</string>
+
+    <!-- Mantenimientos -->
+    <string name="proximos_mantenimientos">Próximos Mantenimientos</string>
+    <string name="sin_mantenimientos_proximos">No hay mantenimientos programados próximamente</string>
+    <string name="ver_todos">Ver todos</string>
+    <string name="ver_detalles">Ver detalles</string>
+    <string name="nuevo_mantenimiento">Nuevo Mantenimiento</string>
+
+    <!-- Bottom Navigation -->
+    <string name="equipos">Equipos</string>
+    <string name="mantenimientos">Mantenimientos</string>
+    <string name="reportes">Reportes</string>
+
+    <!-- Otros -->
+    <string name="fecha">Fecha</string>
+    <string name="error_cargar_datos">Error al cargar datos</string>
+    <!-- Login -->
+    <string name="login_title">TechMaintenance</string>
+    <string name="login_subtitle">Sistema de Gestión de Mantenimientos</string>
+    <string name="email_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="remember_session">Recordar sesión</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="login_button">INICIAR SESIÓN</string>
+    <string name="login_with_biometric">Iniciar con huella/PIN</string>
+    <string name="footer">TechSolution © 2025</string>
+
+    <!-- Recuperar contraseña -->
+    <string name="recover_title">Recuperar Contraseña</string>
+    <string name="recover_instruction">Ingrese su correo para recibir el código de recuperación</string>
+    <string name="send_code">ENVIAR CÓDIGO</string>
+    <string name="back_to_login">Volver al login</string>
+    <string name="code_hint">Código de 6 dígitos</string>
+    <string name="new_password_hint">Nueva contraseña</string>
+    <string name="confirm_password_hint">Confirmar contraseña</string>
+    <string name="change_password">CAMBIAR CONTRASEÑA</string>
+
+    <!-- Errores -->
+    <string name="error_invalid_email">Email inválido</string>
+    <string name="error_short_password">Contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_invalid_credentials">Credenciales incorrectas</string>
+    <string name="error_account_disabled">Cuenta desactivada, contacta al administrador</string>
+    <string name="error_connection">Error de conexión, intenta de nuevo</string>
+    <string name="error_empty_field">Este campo es obligatorio</string>
+    <string name="error_passwords_dont_match">Las contraseñas no coinciden</string>
+    <string name="error_invalid_code">Código incorrecto</string>
+    <string name="error_code_expired">Código expirado</string>
+
+    <!-- Dashboard -->
+    <string name="welcome">Hola, %1$s</string>
+    <string name="services_today">Tienes %1$d servicios hoy</string>
+    <string name="dashboard_title">Dashboard</string>
+
+    <!-- Navegación -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_clients">Clientes</string>
+    <string name="nav_equipments">Equipos</string>
+    <string name="nav_maintenances">Mantenimientos</string>
+    <string name="nav_calendar">Calendario</string>
+    <string name="nav_reports">Reportes</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="nav_my_tasks">Mis Tareas</string>
+    <string name="nav_my_equipments">Mis Equipos</string>
+
+    <!-- Acciones -->
+    <string name="action_add">Agregar</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_delete">Eliminar</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_filter">Filtrar</string>
+    <string name="action_export">Exportar</string>
+    <string name="action_logout">Cerrar Sesión</string>
+    <string name="action_call">Llamar</string>
+    <string name="action_email">Email</string>
+    <string name="action_view">Ver</string>
+
+    <!-- Biométrica -->
+    <string name="biometric_title">Autenticación</string>
+    <string name="biometric_subtitle">Usa tu huella o PIN para iniciar sesión</string>
+    <string name="biometric_description">Coloca tu dedo en el sensor</string>
+    <string name="biometric_negative_button">Usar contraseña</string>
+    <string name="biometric_error">Error de autenticación biométrica</string>
+    <string name="biometric_not_available">Autenticación biométrica no disponible</string>
+
+    <!-- Mensajes de éxito -->
+    <string name="success_saved">Guardado correctamente</string>
+    <string name="success_deleted">Eliminado correctamente</string>
+    <string name="success_updated">Actualizado correctamente</string>
+    <string name="success_password_changed">Contraseña actualizada exitosamente</string>
+    <string name="success_code_sent">Código enviado a tu correo</string>
+
+    <!-- Confirmaciones -->
+    <string name="confirm_delete">¿Estás seguro de eliminar?</string>
+    <string name="confirm_logout">¿Deseas cerrar sesión?</string>
+    <string name="confirm_complete_service">¿Marcar servicio como completado?</string>
+
+    <!-- Clientes -->
+    <string name="clients_title">Clientes</string>
+    <string name="client_name">Nombre de la Empresa</string>
+    <string name="contact_name">Nombre del Contacto</string>
+    <string name="contact_position">Cargo del Contacto</string>
+    <string name="contact_email">Email del Contacto</string>
+    <string name="contact_phone">Teléfono de Contacto</string>
+    <string name="alternate_phone">Teléfono Alternativo</string>
+    <string name="address">Dirección Completa</string>
+    <string name="address_reference">Referencias de Ubicación</string>
+
+    <!-- Equipos -->
+    <string name="equipments_title">Equipos</string>
+    <string name="equipment_type">Tipo de Equipo</string>
+    <string name="equipment_brand">Marca</string>
+    <string name="equipment_model">Modelo</string>
+    <string name="equipment_serial">Número de Serie</string>
+    <string name="equipment_location">Ubicación Específica</string>
+    <string name="equipment_photo">Fotografía del Equipo</string>
+    <string name="take_photo">Tomar Foto</string>
+    <string name="select_from_gallery">Seleccionar de Galería</string>
+
+    <!-- Mantenimientos -->
+    <string name="maintenances_title">Mantenimientos</string>
+    <string name="maintenance_type">Tipo de Mantenimiento</string>
+    <string name="maintenance_priority">Prioridad</string>
+    <string name="maintenance_description">Descripción del Servicio</string>
+    <string name="scheduled_date">Fecha Programada</string>
+    <string name="scheduled_time">Hora Programada</string>
+    <string name="technician">Técnico</string>
+    <string name="support_technicians">Técnicos de Apoyo</string>
+    <string name="start_service">INICIAR SERVICIO</string>
+    <string name="complete_service">COMPLETAR SERVICIO</string>
+    <string name="validation_code">Código de Validación</string>
+    <string name="observations">Observaciones</string>
+    <string name="observaciones">Observaciones</string>
+    <string name="evidence_photos">Fotos de Evidencia</string>
+
+    <!-- Estados -->
+    <string name="status_scheduled">Programado</string>
+    <string name="status_in_progress">En Proceso</string>
+    <string name="status_completed">Completado</string>
+    <string name="status_cancelled">Cancelado</string>
+    <string name="status_active">Activo</string>
+    <string name="status_inactive">Inactivo</string>
+    <string name="status_operational">Operativo</string>
+    <string name="status_maintenance">En Mantenimiento</string>
+    <string name="status_out_of_service">Fuera de Servicio</string>
+
+    <!-- Tipos -->
+    <string name="type_preventive">Preventivo</string>
+    <string name="type_corrective">Correctivo</string>
+    <string name="type_emergency">Emergencia</string>
+
+    <!-- Prioridades -->
+    <string name="priority_low">Baja</string>
+    <string name="priority_medium">Media</string>
+    <string name="priority_high">Alta</string>
+    <string name="priority_urgent">Urgente</string>
+
+    <!-- Perfil -->
+    <string name="profile_title">Perfil</string>
+    <string name="my_profile">Mi Perfil</string>
+    <string name="full_name">Nombre Completo</string>
+    <string name="phone">Teléfono</string>
+    <string name="role">Rol</string>
+    <string name="change_password_title">Cambiar Contraseña</string>
+    <string name="current_password">Contraseña Actual</string>
+    <string name="profile_photo">Foto de Perfil</string>
+
+    <!-- Estadísticas -->
+    <string name="estadisticas">Estadísticas</string>
+    <string name="completed_services">Servicios Completados</string>
+    <string name="average_rating">Calificación Promedio</string>
+    <string name="efficiency">Eficiencia</string>
+    <string name="total_equipments">Total de Equipos</string>
+    <string name="total_clients">Total de Clientes</string>
+    <!-- Botón Eliminar Cliente -->
+    <string name="eliminar_cliente">Eliminar Cliente</string>
+    <!-- Reportes -->
+    <string name="reports_title">Reportes</string>
+    <string name="export_pdf">Exportar como PDF</string>
+    <string name="export_excel">Exportar como Excel</string>
+    <string name="select_period">Seleccionar Período</string>
+
+    <!-- Validación cliente -->
+    <string name="validation_title">Validación de Servicio</string>
+    <string name="enter_code">Ingrese el Código</string>
+    <string name="rate_service">Califica el Servicio</string>
+    <string name="additional_comments">Comentarios Adicionales</string>
+    <string name="submit_validation">Enviar Validación</string>
+
+    <!-- Mensajes informativos -->
+    <string name="no_data">No hay datos disponibles</string>
+    <string name="loading">Cargando…</string>
+    <string name="search_hint">Buscar…</string>
+
+    <!-- Formatos -->
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="time_format">HH:mm</string>
+
+    <!-- Dashboard Técnico -->
+    <string name="mi_dashboard">Mi Dashboard</string>
+    <string name="activo">Activo</string>
+    <string name="foto_perfil">Foto de perfil</string>
+    <string name="mis_tareas_hoy">Mis Tareas de Hoy</string>
+    <string name="sin_tareas_hoy">No tienes tareas programadas para hoy</string>
+    <string name="ver_todas">Ver todas</string>
+    <string name="mis_estadisticas_mes">Mis Estadísticas del Mes</string>
+    <string name="eficiencia">Eficiencia</string>
+    <string name="a_tiempo">A Tiempo</string>
+    <string name="mi_proxima_cita">Mi Próxima Cita</string>
+    <string name="sin_proximas_citas">No tienes próximas citas programadas</string>
+
+    <!-- Bottom Navigation Técnico -->
+    <string name="inicio">Inicio</string>
+    <string name="mis_equipos">Mis Equipos</string>
+    <string name="mis_tareas">Mis Tareas</string>
+    <string name="calendario">Calendario</string>
+
+    <!-- Clientes - General -->
+    <string name="clientes">Clientes</string>
+    <string name="agregar_cliente">Agregar Cliente</string>
+    <string name="editar_cliente">Editar Cliente</string>
+    <string name="detalle_cliente">Detalle del Cliente</string>
+    <string name="guardar_cliente">Guardar Cliente</string>
+    <string name="sin_clientes">No hay clientes registrados</string>
+    <string name="agregar_primer_cliente">Toca el botón + para agregar tu primer cliente</string>
+
+    <!-- Búsqueda y Filtros -->
+    <string name="buscar">Buscar</string>
+    <string name="buscar_cliente">Buscar por nombre o email...</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="todos">Todos</string>
+    <string name="con_equipos">Con Equipos</string>
+    <string name="sin_equipos">Sin Equipos</string>
+    <string name="recientes">Recientes</string>
+
+    <!-- Formulario - Secciones -->
+    <string name="informacion_empresa">Información de la Empresa</string>
+    <string name="contacto_principal">Contacto Principal</string>
+    <string name="ubicacion_cliente">Ubicación del Cliente</string>
+
+    <!-- Formulario - Campos -->
+    <string name="nombre_empresa">Nombre de la Empresa</string>
+    <string name="nombre_contacto">Nombre del Contacto</string>
+    <string name="cargo_contacto">Cargo del Contacto (opcional)</string>
+    <string name="email_contacto">Email del Contacto</string>
+    <string name="telefono_contacto">Teléfono de Contacto</string>
+    <string name="telefono_alternativo">Teléfono Alternativo (opcional)</string>
+    <string name="direccion_completa">Dirección Completa</string>
+    <string name="referencias_ubicacion">Referencias de Ubicación (opcional)</string>
+
+    <!-- Helpers y Placeholders -->
+    <string name="opcional">(Opcional)</string>
+    <string name="email_validacion_helper">Este email se usará para validación de servicios</string>
+    <string name="direccion_helper">Los técnicos usarán esta dirección para ubicar al cliente</string>
+    <string name="referencias_helper">Ej: Frente a Metrocentro, portón verde, timbre #3</string>
+
+    <!-- Validaciones -->
+    <string name="error_nombre_empresa">El nombre de la empresa es obligatorio</string>
+    <string name="error_nombre_contacto">El nombre del contacto es obligatorio</string>
+    <string name="error_email_vacio">El email es obligatorio</string>
+    <string name="error_email_invalido">Email inválido</string>
+    <string name="error_email_duplicado">Este email ya está registrado</string>
+    <string name="error_telefono_vacio">El teléfono es obligatorio</string>
+    <string name="error_telefono_invalido">Teléfono inválido</string>
+    <string name="error_direccion_vacia">La dirección es obligatoria</string>
+
+    <!-- Mensajes de éxito -->
+    <string name="cliente_guardado">✅ Cliente guardado correctamente</string>
+    <string name="cliente_actualizado">✅ Cliente actualizado correctamente</string>
+    <string name="cliente_eliminado">Cliente eliminado</string>
+
+    <!-- Mensajes de error -->
+    <string name="error_guardar_cliente">❌ Error al guardar cliente</string>
+    <string name="error_cargar_clientes">Error al cargar clientes</string>
+
+    <!-- Acciones -->
+    <string name="ver">Ver</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
+    <string name="llamar">Llamar</string>
+    <string name="enviar_email">Enviar Email</string>
+    <string name="ver_equipos">Ver Equipos</string>
+
+    <!-- Confirmaciones -->
+    <string name="confirmar_eliminar_cliente">¿Eliminar este cliente?</string>
+    <string name="confirmar_eliminar_mensaje">Esta acción no se puede deshacer. Solo se puede eliminar si no tiene equipos registrados.</string>
+    <string name="si_eliminar">Sí, Eliminar</string>
+
+    <!-- Completar Servicio -->
+    <string name="completar_servicio">Completar Servicio</string>
+    <string name="confirmar_completacion">¿Confirmar completación?</string>
+    <string name="resumen_servicio">Antes de completar, verifica que todas las observaciones y fotos estén registradas correctamente.</string>
+    <string name="confirmacion">Confirmación</string>
+    <string name="exito">Éxito</string>
+    <string name="servicio_completado">¡Servicio Completado!</string>
+    <string name="codigo_validacion">Código de Validación</string>
+    <string name="codigo_expira_en">Código expira en:</string>
+    <string name="codigo_enviado_a">Código enviado a:</string>
+    <string name="copiar_codigo">Copiar Código</string>
+    <string name="reenviar_email">Reenviar Email</string>
+    <string name="volver_inicio">Volver al Inicio</string>
+
+    <!-- Detalle Mantenimiento -->
+    <string name="detalle_mantenimiento">Detalle del Mantenimiento</string>
+    <string name="estado">Estado</string>
+    <string name="prioridad">Prioridad</string>
+    <string name="equipo_titulo">Equipo</string>
+    <string name="foto_equipo">Foto del Equipo</string>
+    <string name="marca_modelo">Marca y Modelo</string>
+    <string name="sin_especificar">Sin especificar</string>
+    <string name="numero_serie">Número de Serie</string>
+    <string name="tipo_equipo">Tipo de Equipo</string>
+    <string name="ubicacion_especifica">Ubicación Específica</string>
+    <string name="cliente_titulo">Cliente</string>
+    <string name="email">Email</string>
+    <string name="mapa">Mapa</string>
+    <string name="detalles_servicio">Detalles del Servicio</string>
+    <string name="tipo_mantenimiento">Tipo de Mantenimiento</string>
+    <string name="descripcion_servicio">Descripción del Servicio</string>
+    <string name="fecha_programada">Fecha Programada</string>
+    <string name="fecha_inicio">Fecha de Inicio</string>
+    <string name="fecha_finalizacion">Fecha de Finalización</string>
+    <string name="duracion_servicio">Duración del Servicio</string>
+    <string name="equipo_trabajo">Equipo de Trabajo</string>
+    <string name="tecnico_principal">Técnico Principal</string>
+    <string name="tecnicos_apoyo">Técnicos de Apoyo</string>
+    <string name="observaciones_tecnicas">Observaciones Técnicas</string>
+    <string name="observaciones_servicio">Agregar observaciones del servicio...</string>
+    <string name="guardar_observaciones">Guardar Observaciones</string>
+    <string name="evidencias_fotograficas">Evidencias Fotográficas</string>
+    <string name="num_fotos">0/5</string>
+    <string name="agregar_foto">Agregar Foto</string>
+    <string name="validacion_cliente">Validación del Cliente</string>
+    <string name="estado_validacion">Estado de Validación</string>
+    <string name="calificacion_cliente">Calificación del Cliente</string>
+    <string name="comentario_cliente">Comentario del Cliente</string>
+    <string name="reasignar">Reasignar</string>
+    <string name="iniciar_servicio">Iniciar Servicio</string>
+
+    <!-- Strings adicionales para Validación de Cliente -->
+    <string name="ingrese_codigo_instruccion">Ingrese el código de 6 dígitos que recibió en su correo electrónico</string>
+    <string name="validar_codigo">Validar Código</string>
+    <string name="solicitar_reenvio">Solicitar reenvío del código</string>
+    <string name="trabajo_realizado">Trabajo Realizado</string>
+    <string name="continuar_calificar">Continuar a Calificar</string>
+    <string name="calificacion_instruccion">¿Cómo calificaría el servicio recibido?</string>
+    <string name="gracias_validacion">¡Gracias por su validación!</string>
+    <string name="validacion_exitosa_mensaje">Su calificación ha sido registrada exitosamente. Nos ayuda a mejorar nuestro servicio.</string>
+    <string name="cerrar">Cerrar</string>
+</resources>

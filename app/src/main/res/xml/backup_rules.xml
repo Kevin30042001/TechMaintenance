@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Excluir credenciales de login del backup por seguridad -->
+    <exclude domain="sharedpref" path="LoginPrefs.xml"/>
+
+    <!-- Incluir todo lo demás -->
+    <include domain="sharedpref" path="."/>
+    <include domain="database" path="."/>
+    <include domain="file" path="."/>
+</full-backup-content>

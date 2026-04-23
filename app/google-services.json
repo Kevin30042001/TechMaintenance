@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "704465532611",
+    "project_id": "techmaintenance-798e9",
+    "storage_bucket": "techmaintenance-798e9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704465532611:android:3c7c22a87a214877f89476",
+        "android_client_info": {
+          "package_name": "com.techsolution.techmaintenance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANRVag8hCMDZRUaFQAptOasM0LdAB4dwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <!-- AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:title="@string/equipos"
+            app:titleTextColor="@color/white"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/white"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Contenido principal -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header con contador -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tvContadorEquipos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Total: 0 equipos"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_text"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Barra de búsqueda -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_search"
+                        android:contentDescription="@string/buscar"
+                        app:tint="@color/secondary_text"
+                        android:layout_marginEnd="8dp"/>
+
+                    <EditText
+                        android:id="@+id/etBuscar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Buscar por marca, modelo o número de serie..."
+                        android:textSize="14sp"
+                        android:background="@null"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:imeOptions="actionSearch"
+                        tools:ignore="HardcodedText"/>
+
+                    <ImageButton
+                        android:id="@+id/btnLimpiarBusqueda"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_close"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/limpiar"
+                        android:visibility="gone"
+                        app:tint="@color/secondary_text"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Filtros rápidos (chips) -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupFiltros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTodos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/todos"
+                        android:checked="true"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"/>
+
+                    <!-- Filtros por tipo -->
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipLaptops"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Laptops"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        tools:ignore="HardcodedText"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipDesktops"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Desktops"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        tools:ignore="HardcodedText"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipServidores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Servidores"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        tools:ignore="HardcodedText"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipImpresoras"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Impresoras"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        tools:ignore="HardcodedText"/>
+
+                    <!-- Filtros por estado -->
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipOperativos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Operativos"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        tools:ignore="HardcodedText"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipEnMantenimiento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="En Mantenimiento"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        tools:ignore="HardcodedText"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipFueraServicio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fuera de Servicio"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        tools:ignore="HardcodedText"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
+
+            <!-- ProgressBar de carga -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="32dp"
+                android:visibility="gone"/>
+
+            <!-- Mensaje sin equipos -->
+            <LinearLayout
+                android:id="@+id/layoutSinEquipos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="💻"
+                    android:textSize="64sp"
+                    android:layout_marginBottom="16dp"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No hay equipos registrados"
+                    android:textSize="16sp"
+                    android:textColor="@color/secondary_text"
+                    android:textAlignment="center"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Toca el botón + para agregar el primer equipo"
+                    android:textSize="14sp"
+                    android:textColor="@color/secondary_text"
+                    android:layout_marginTop="8dp"
+                    android:textAlignment="center"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- RecyclerView de equipos (Grid 2 columnas) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerEquipos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="80dp"
+                android:clipToPadding="false"
+                tools:listitem="@layout/item_equipo_card"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Botón Flotante para agregar equipo (solo admin) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAgregarEquipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Agregar equipo"
+        android:src="@drawable/ic_add"
+        app:tint="@color/white"
+        app:backgroundTint="@color/secondary"
+        tools:ignore="HardcodedText"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

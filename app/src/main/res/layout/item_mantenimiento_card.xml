@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="6dp"
+    android:layout_marginHorizontal="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Borde lateral de color según prioridad -->
+        <View
+            android:id="@+id/viewPrioridad"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@color/secondary_text"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Fila 1: Fecha y hora + Indicador de prioridad -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_calendar"
+                    app:tint="@color/secondary_text"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/fecha"/>
+
+                <TextView
+                    android:id="@+id/tvFechaHora"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="25/11/2025 - 10:00 AM"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_text"
+                    tools:ignore="HardcodedText"/>
+
+                <View
+                    android:id="@+id/indicadorPrioridad"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:background="@drawable/circle_shape"/>
+
+            </LinearLayout>
+
+            <!-- Nombre del equipo -->
+            <TextView
+                android:id="@+id/tvEquipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dell Latitude 5420"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                android:layout_marginBottom="4dp"
+                tools:ignore="HardcodedText"/>
+
+            <!-- Cliente -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏢"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Corporación XYZ"
+                    android:textSize="14sp"
+                    android:textColor="@color/secondary_text"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Ubicación -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📍"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvUbicacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edificio Torre 1, Piso 3"
+                    android:textSize="13sp"
+                    android:textColor="@color/secondary_text"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Técnico -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="👤"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvTecnico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Roberto López"
+                    android:textSize="13sp"
+                    android:textColor="@color/secondary_text"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Tipo de mantenimiento -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTipo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preventivo"
+                    android:textSize="11sp"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    app:chipBackgroundColor="@color/chip_background"
+                    tools:ignore="HardcodedText"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVerDetalles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="@string/ver_detalles"
+                    android:textSize="12sp"
+                    android:textAllCaps="false"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:cornerRadius="6dp"/>
+
+            </LinearLayout>
+
+            <!-- Botón Reenviar Código (solo para completados sin validar) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReenviarCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REENVIAR CÓDIGO"
+                android:textSize="13sp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:icon="@drawable/ic_email"
+                app:iconGravity="textStart"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:cornerRadius="6dp"
+                app:strokeColor="@color/primary"
+                tools:visibility="visible"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar Servicio - TechMaintenance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: #2196F3;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .logo-icon {
+            font-size: 40px;
+            color: white;
+        }
+
+        h1 {
+            color: #2196F3;
+            font-size: 24px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #2196F3;
+        }
+
+        .code-input {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 8px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1976D2;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2196F3;
+            border: 2px solid #2196F3;
+        }
+
+        .btn-secondary:hover {
+            background: #f5f5f5;
+        }
+
+        .info-card {
+            background: #f5f5f5;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .info-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .rating {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .stars {
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        .star {
+            color: #ddd;
+            transition: color 0.2s;
+        }
+
+        .star.active {
+            color: #FFC107;
+        }
+
+        .success-icon {
+            text-align: center;
+            font-size: 80px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .error-msg {
+            background: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2196F3;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .photo-gallery {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .photo-gallery img {
+            height: 120px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div class="logo-circle">
+                <div class="logo-icon">🔧</div>
+            </div>
+            <h1>Validar Servicio</h1>
+            <p class="subtitle">TechMaintenance</p>
+        </div>
+
+        <div class="error-msg" id="errorMsg"></div>
+        <div class="loader" id="loader"></div>
+
+        <!-- Paso 1: Ingresar Código -->
+        <div class="step active" id="step1">
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">
+                Ingrese el código de 6 dígitos que recibió en su email
+            </p>
+
+            <div class="form-group">
+                <label>Código de Validación</label>
+                <input type="text" id="codigoInput" class="code-input" maxlength="6" placeholder="000000" autofocus>
+            </div>
+
+            <button class="btn" onclick="validarCodigo()">Validar Código</button>
+
+            <p style="text-align: center; margin-top: 16px; color: #999; font-size: 14px;">
+                ¿No recibiste el código? Contacta con tu proveedor de servicio.
+            </p>
+        </div>
+
+        <!-- Paso 2: Resumen del Servicio -->
+        <div class="step" id="step2">
+            <h2 style="color: #333; margin-bottom: 20px;">Resumen del Servicio</h2>
+
+            <div class="info-card" id="resumenServicio">
+                <!-- Se llenará dinámicamente -->
+            </div>
+
+            <div id="fotosEvidencia"></div>
+        </div>
+
+        <!-- Paso 3: Calificar -->
+        <div class="step" id="step3">
+            <h2 style="color: #333; margin-bottom: 20px;">Calificar Servicio</h2>
+
+            <p style="text-align: center; color: #666; margin-bottom: 16px;">
+                ¿Cómo calificarías el servicio recibido?
+            </p>
+
+            <div class="rating">
+                <div class="stars" id="stars">
+                    <span class="star" data-rating="1" onclick="setRating(1)">★</span>
+                    <span class="star" data-rating="2" onclick="setRating(2)">★</span>
+                    <span class="star" data-rating="3" onclick="setRating(3)">★</span>
+                    <span class="star" data-rating="4" onclick="setRating(4)">★</span>
+                    <span class="star" data-rating="5" onclick="setRating(5)">★</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Comentarios (Opcional)</label>
+                <textarea id="comentarios" rows="4" maxlength="300" placeholder="Cuéntanos sobre tu experiencia..."></textarea>
+            </div>
+
+            <button class="btn" onclick="enviarValidacion()">Enviar Validación</button>
+        </div>
+
+        <!-- Paso 4: Confirmación -->
+        <div class="step" id="step4">
+            <div class="success-icon">✓</div>
+            <h2 style="color: #4CAF50; text-align: center; margin-bottom: 16px;">¡Gracias por tu validación!</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px;" id="mensajeConfirmacion">
+                Tu calificación ha sido registrada exitosamente.
+            </p>
+            <p style="text-align: center; color: #999; font-size: 14px;">
+                Puedes cerrar esta ventana.
+            </p>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Configuración de Firebase - TechMaintenance
+        const firebaseConfig = {
+            apiKey: "AIzaSyANRVag8hCMDZRUaFQAptOasM0LdAB4dwQ",
+            authDomain: "techmaintenance-798e9.firebaseapp.com",
+            projectId: "techmaintenance-798e9",
+            storageBucket: "techmaintenance-798e9.firebasestorage.app",
+            messagingSenderId: "704465532611",
+            appId: "1:704465532611:android:3c7c22a87a214877f89476"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        let mantenimientoData = null;
+        let calificacionSeleccionada = 0;
+
+        // 🔗 Leer código de la URL al cargar la página
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('🌐 ========================================');
+            console.log('🌐 PÁGINA DE VALIDACIÓN WEB CARGADA');
+            console.log('🌐 ========================================');
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const codigoURL = urlParams.get('codigo');
+
+            console.log('🔍 URL actual:', window.location.href);
+            console.log('🔍 Parámetros URL:', window.location.search);
+            console.log('🔍 Código extraído de URL:', codigoURL);
+
+            if (codigoURL) {
+                document.getElementById('codigoInput').value = codigoURL;
+                console.log('✅ Código pre-llenado:', codigoURL);
+                console.log('⏳ Validando código automáticamente en 1 segundo...');
+
+                // Auto-validar después de 1 segundo
+                setTimeout(() => {
+                    console.log('🚀 Iniciando validación automática...');
+                    validarCodigo();
+                }, 1000);
+            } else {
+                console.log('⚠️ No se encontró código en la URL');
+                console.log('💡 El cliente deberá ingresar el código manualmente');
+            }
+        });
+
+        function showStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
+        }
+
+        function showError(mensaje) {
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.textContent = mensaje;
+            errorMsg.style.display = 'block';
+            setTimeout(() => {
+                errorMsg.style.display = 'none';
+            }, 5000);
+        }
+
+        function showLoader(show) {
+            document.getElementById('loader').style.display = show ? 'block' : 'none';
+        }
+
+        async function validarCodigo() {
+            const codigo = document.getElementById('codigoInput').value.trim();
+
+            console.log('🔍 ========================================');
+            console.log('🔍 VALIDANDO CÓDIGO');
+            console.log('🔍 ========================================');
+            console.log('🔍 Código ingresado:', codigo);
+
+            if (codigo.length !== 6) {
+                console.log('❌ Código inválido: debe tener 6 dígitos');
+                showError('El código debe tener 6 dígitos');
+                return;
+            }
+
+            showLoader(true);
+            console.log('⏳ Buscando mantenimiento en Firestore...');
+
+            try {
+                const querySnapshot = await db.collection('mantenimientos')
+                    .where('codigoValidacion', '==', codigo)
+                    .get();
+
+                console.log('📊 Resultados encontrados:', querySnapshot.size);
+
+                if (querySnapshot.empty) {
+                    console.log('❌ Código no encontrado en la base de datos');
+                    showLoader(false);
+                    showError('Código inválido o no encontrado');
+                    return;
+                }
+
+                const doc = querySnapshot.docs[0];
+                mantenimientoData = { id: doc.id, ...doc.data() };
+
+                console.log('✅ Mantenimiento encontrado:');
+                console.log('   - ID:', mantenimientoData.id);
+                console.log('   - Estado:', mantenimientoData.estado);
+                console.log('   - Validado:', mantenimientoData.validadoPorCliente);
+                console.log('   - Cliente:', mantenimientoData.clienteId);
+                console.log('   - Equipo:', mantenimientoData.equipoId);
+                console.log('   - Técnico:', mantenimientoData.tecnicoPrincipalId);
+
+                // Verificar si ya fue validado
+                if (mantenimientoData.validadoPorCliente) {
+                    console.log('⚠️ Este servicio ya fue validado anteriormente');
+                    showLoader(false);
+                    showError('Este servicio ya fue validado anteriormente');
+                    return;
+                }
+
+                // Verificar expiración
+                if (mantenimientoData.codigoExpiraEn) {
+                    const ahora = new Date();
+                    const expira = mantenimientoData.codigoExpiraEn.toDate();
+                    console.log('⏰ Código expira:', expira.toLocaleString('es-ES'));
+                    console.log('⏰ Fecha actual:', ahora.toLocaleString('es-ES'));
+
+                    if (ahora > expira) {
+                        console.log('❌ Código expirado');
+                        showLoader(false);
+                        showError('El código ha expirado (válido por 24 horas)');
+                        return;
+                    } else {
+                        console.log('✅ Código válido (no ha expirado)');
+                    }
+                }
+
+                // Cargar datos relacionados
+                console.log('🔄 Cargando datos relacionados...');
+                await cargarDatosRelacionados();
+
+            } catch (error) {
+                console.log('❌ Error al validar código:', error);
+                console.error(error);
+                showLoader(false);
+                showError('Error: ' + error.message);
+            }
+        }
+
+        async function cargarDatosRelacionados() {
+            try {
+                // Cargar equipo
+                const equipoDoc = await db.collection('equipos').doc(mantenimientoData.equipoId).get();
+                const equipo = equipoDoc.data();
+
+                // Cargar cliente
+                const clienteDoc = await db.collection('clientes').doc(mantenimientoData.clienteId).get();
+                const cliente = clienteDoc.data();
+
+                // Cargar técnico
+                const tecnicoDoc = await db.collection('usuarios').doc(mantenimientoData.tecnicoPrincipalId).get();
+                const tecnico = tecnicoDoc.data();
+
+                showLoader(false);
+                mostrarResumen(equipo, cliente, tecnico);
+
+            } catch (error) {
+                showLoader(false);
+                showError('Error al cargar datos: ' + error.message);
+            }
+        }
+
+        function mostrarResumen(equipo, cliente, tecnico) {
+            const resumen = document.getElementById('resumenServicio');
+
+            const fecha = mantenimientoData.fechaFinalizacion ?
+                new Date(mantenimientoData.fechaFinalizacion.seconds * 1000).toLocaleString('es-ES') :
+                'No especificada';
+
+            resumen.innerHTML = `
+                <div class="info-row">
+                    <span class="info-label">Fecha:</span>
+                    <span class="info-value">${fecha}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Duración:</span>
+                    <span class="info-value">${mantenimientoData.duracionServicio || 'No especificado'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Equipo:</span>
+                    <span class="info-value">${equipo.marca} ${equipo.modelo}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Técnico:</span>
+                    <span class="info-value">${tecnico.nombre}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Trabajo realizado:</span>
+                    <span class="info-value">${mantenimientoData.observacionesTecnico || mantenimientoData.descripcionServicio}</span>
+                </div>
+            `;
+
+            // Mostrar fotos si existen
+            if (mantenimientoData.evidenciasFotograficas && mantenimientoData.evidenciasFotograficas.length > 0) {
+                const fotosDiv = document.getElementById('fotosEvidencia');
+                let fotosHTML = '<h3 style="margin-top: 20px; color: #333;">Evidencias Fotográficas</h3><div class="photo-gallery">';
+                mantenimientoData.evidenciasFotograficas.forEach(url => {
+                    fotosHTML += `<img src="${url}" alt="Evidencia" onclick="window.open('${url}', '_blank')">`;
+                });
+                fotosHTML += '</div>';
+                fotosDiv.innerHTML = fotosHTML;
+            }
+
+            showStep(2);
+            showStep(3);
+        }
+
+        function setRating(rating) {
+            calificacionSeleccionada = rating;
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        async function enviarValidacion() {
+            if (calificacionSeleccionada === 0) {
+                showError('Por favor califica el servicio');
+                return;
+            }
+
+            const comentarios = document.getElementById('comentarios').value.trim();
+
+            showLoader(true);
+
+            try {
+                // Actualizar mantenimiento
+                await db.collection('mantenimientos').doc(mantenimientoData.id).update({
+                    validadoPorCliente: true,
+                    calificacionCliente: calificacionSeleccionada,
+                    comentarioCliente: comentarios,
+                    fechaValidacion: firebase.firestore.Timestamp.now()
+                });
+
+                // Actualizar estadísticas del técnico
+                const tecnicoDoc = await db.collection('usuarios').doc(mantenimientoData.tecnicoPrincipalId).get();
+                const estadisticas = tecnicoDoc.data().estadisticas || {};
+                const serviciosCompletados = estadisticas.serviciosCompletados || 0;
+                const calificacionPromedio = estadisticas.calificacionPromedio || 0;
+
+                const nuevaCalificacion = ((calificacionPromedio * serviciosCompletados) + calificacionSeleccionada) / (serviciosCompletados + 1);
+
+                await db.collection('usuarios').doc(mantenimientoData.tecnicoPrincipalId).update({
+                    'estadisticas.calificacionPromedio': nuevaCalificacion
+                });
+
+                showLoader(false);
+                document.getElementById('mensajeConfirmacion').textContent =
+                    `Tu calificación de ${calificacionSeleccionada} estrellas ha sido registrada.`;
+
+                showStep(4);
+
+            } catch (error) {
+                showLoader(false);
+                showError('Error al enviar validación: ' + error.message);
+            }
+        }
+
+        // Permitir enter en el campo de código
+        document.getElementById('codigoInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                validarCodigo();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <!-- Columna izquierda: Línea de tiempo con icono -->
+    <LinearLayout
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Línea superior -->
+        <View
+            android:id="@+id/lineaTop"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/divider"/>
+
+        <!-- Icono circular con estado -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardIcono"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/primary">
+
+            <ImageView
+                android:id="@+id/ivIconoEstado"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_build"
+                app:tint="@color/white"
+                android:contentDescription="Estado del mantenimiento"
+                tools:ignore="HardcodedText"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Línea inferior -->
+        <View
+            android:id="@+id/lineaBottom"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/divider"/>
+
+    </LinearLayout>
+
+    <!-- Columna derecha: Contenido del mantenimiento -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardMantenimiento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Header: Estado y Fecha -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <!-- Chip de Estado -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipEstado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Completado"
+                    android:textSize="11sp"
+                    android:textColor="@color/white"
+                    app:chipBackgroundColor="@color/success"
+                    app:chipMinHeight="24dp"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    tools:ignore="HardcodedText"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"/>
+
+                <!-- Fecha -->
+                <TextView
+                    android:id="@+id/tvFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="26/11/2025"
+                    android:textSize="12sp"
+                    android:textColor="@color/secondary_text"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Tipo de Mantenimiento -->
+            <TextView
+                android:id="@+id/tvTipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mantenimiento Preventivo"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                android:layout_marginBottom="4dp"
+                tools:ignore="HardcodedText"/>
+
+            <!-- Técnico -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_person"
+                    app:tint="@color/secondary_text"
+                    android:contentDescription="Técnico"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:id="@+id/tvTecnico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Roberto López"
+                    android:textSize="13sp"
+                    android:textColor="@color/secondary_text"
+                    android:layout_marginStart="6dp"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Observaciones (si existen) -->
+            <TextView
+                android:id="@+id/tvObservaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Se realizó limpieza general y actualización de software"
+                android:textSize="12sp"
+                android:textColor="@color/secondary_text"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="2dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                tools:ignore="HardcodedText"/>
+
+            <!-- Calificación (si está validado) -->
+            <LinearLayout
+                android:id="@+id/layoutCalificacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:padding="8dp"
+                android:background="@drawable/rounded_background_light"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:id="@+id/tvCalificacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.0"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_text"
+                    android:layout_marginStart="4dp"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="•"
+                    android:textSize="13sp"
+                    android:textColor="@color/secondary_text"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:id="@+id/tvComentarioCliente"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Excelente servicio"
+                    android:textSize="12sp"
+                    android:textColor="@color/secondary_text"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    tools:ignore="HardcodedText"/>
+
+            </LinearLayout>
+
+            <!-- Botón Ver Detalles -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVerDetalles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver Detalles"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="12dp"
+                app:cornerRadius="4dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                tools:ignore="HardcodedText"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

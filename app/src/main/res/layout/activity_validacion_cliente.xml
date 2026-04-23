@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".activities.ValidacionClienteActivity">
+
+    <!-- AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        app:elevation="4dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/white"
+            app:title="@string/validation_title"
+            app:titleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <!-- Contenido principal con scroll -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- PASO 1: Ingresar Código -->
+            <LinearLayout
+                android:id="@+id/layoutIngresarCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/card_light">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+
+                        <!-- Ícono -->
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/ic_check_circle"
+                            android:contentDescription="@string/validacion_cliente"
+                            app:tint="@color/primary"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- Título -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/validation_title"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary_text"
+                            android:layout_marginBottom="8dp" />
+
+                        <!-- Instrucciones -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ingrese_codigo_instruccion"
+                            android:textSize="14sp"
+                            android:textColor="@color/secondary_text"
+                            android:gravity="center"
+                            android:layout_marginBottom="24dp" />
+
+                        <!-- Input de código -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/codigo_validacion"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etCodigo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="6"
+                                android:gravity="center"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                android:letterSpacing="0.2" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Botón validar -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnValidarCodigo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/validar_codigo"
+                            android:textSize="16sp"
+                            android:layout_marginTop="16dp"
+                            app:cornerRadius="8dp" />
+
+                        <!-- Botón solicitar reenvío -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSolicitarReenvio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/solicitar_reenvio"
+                            android:textSize="14sp"
+                            android:layout_marginTop="8dp"
+                            style="@style/Widget.Material3.Button.TextButton" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- PASO 2: Resumen del Servicio -->
+            <LinearLayout
+                android:id="@+id/layoutResumenServicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Título del paso -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/resumen_servicio"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Card de resumen -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Fecha -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fecha"
+                            android:textSize="12sp"
+                            android:textColor="@color/secondary_text"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvFechaServicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="15 de Noviembre, 2025"
+                            android:textSize="14sp"
+                            android:textColor="@color/primary_text"
+                            android:layout_marginBottom="12dp" />
+
+                        <!-- Duración -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/duracion_servicio"
+                            android:textSize="12sp"
+                            android:textColor="@color/secondary_text"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvDuracionServicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2.5 horas"
+                            android:textSize="14sp"
+                            android:textColor="@color/primary_text"
+                            android:layout_marginBottom="12dp" />
+
+                        <!-- Equipo -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/equipo_titulo"
+                            android:textSize="12sp"
+                            android:textColor="@color/secondary_text"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvEquipoAtendido"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dell Latitude 5420"
+                            android:textSize="14sp"
+                            android:textColor="@color/primary_text"
+                            android:layout_marginBottom="12dp" />
+
+                        <!-- Técnico -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tecnico_principal"
+                            android:textSize="12sp"
+                            android:textColor="@color/secondary_text"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvTecnicoResponsable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Roberto López"
+                            android:textSize="14sp"
+                            android:textColor="@color/primary_text"
+                            android:layout_marginBottom="12dp" />
+
+                        <!-- Trabajo realizado -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/trabajo_realizado"
+                            android:textSize="12sp"
+                            android:textColor="@color/secondary_text"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvTrabajoRealizado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mantenimiento preventivo general"
+                            android:textSize="14sp"
+                            android:textColor="@color/primary_text"
+                            android:layout_marginBottom="12dp" />
+
+                        <!-- Observaciones -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/observaciones"
+                            android:textSize="12sp"
+                            android:textColor="@color/secondary_text"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvObservaciones"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sin_especificar"
+                            android:textSize="14sp"
+                            android:textColor="@color/primary_text"
+                            android:layout_marginBottom="12dp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Fotos de evidencia -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/evidencias_fotograficas"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:layout_marginBottom="12dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/containerFotosEvidencia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="120dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:spacing="8dp" />
+
+                </HorizontalScrollView>
+
+                <!-- Botón continuar -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnContinuarCalificar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/continuar_calificar"
+                    android:textSize="16sp"
+                    app:cornerRadius="8dp" />
+
+            </LinearLayout>
+
+            <!-- PASO 3: Calificar Servicio -->
+            <LinearLayout
+                android:id="@+id/layoutCalificarServicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Título -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rate_service"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Card de calificación -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp"
+                        android:gravity="center">
+
+                        <!-- Instrucción -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/calificacion_instruccion"
+                            android:textSize="14sp"
+                            android:textColor="@color/secondary_text"
+                            android:gravity="center"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- Rating Bar -->
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:numStars="5"
+                            android:stepSize="1"
+                            android:rating="0"
+                            android:layout_marginBottom="8dp" />
+
+                        <!-- Puntaje -->
+                        <TextView
+                            android:id="@+id/tvPuntaje"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0/5"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary"
+                            android:layout_marginBottom="16dp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Comentarios -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:hint="@string/additional_comments"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="300"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etComentarios"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:minLines="3"
+                        android:maxLines="6"
+                        android:maxLength="300"
+                        android:gravity="start|top" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Botón enviar -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEnviarValidacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/submit_validation"
+                    android:textSize="16sp"
+                    app:cornerRadius="8dp" />
+
+            </LinearLayout>
+
+            <!-- PASO 4: Confirmación -->
+            <LinearLayout
+                android:id="@+id/layoutConfirmacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="#E8F5E9">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="32dp">
+
+                        <!-- Ícono de éxito -->
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/ic_check_circle"
+                            android:contentDescription="@string/exito"
+                            app:tint="@color/success"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- Mensaje de agradecimiento -->
+                        <TextView
+                            android:id="@+id/tvMensajeGracias"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gracias_validacion"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/success"
+                            android:gravity="center"
+                            android:layout_marginBottom="8dp" />
+
+                        <!-- Mensaje adicional -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/validacion_exitosa_mensaje"
+                            android:textSize="14sp"
+                            android:textColor="@color/secondary_text"
+                            android:gravity="center"
+                            android:layout_marginBottom="24dp" />
+
+                        <!-- Botón cerrar -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCerrar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cerrar"
+                            android:textSize="16sp"
+                            app:cornerRadius="8dp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
